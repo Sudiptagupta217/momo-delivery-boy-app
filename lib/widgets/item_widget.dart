@@ -93,7 +93,7 @@ class _ItemWidgetState extends State<ItemWidget> {
                          //   margin: EdgeInsets.only(left: 10,top: 10),
                           //  width: MediaQuery.of(context).size.width*0.2,
                              // child:
-                          SizedBox(height: 50,),
+                          SizedBox(height: 40,),
                               Center(child: Text(widget.itemName, style: TextStyle(fontSize: 17,fontWeight: FontWeight.w600,color: DefaultColor.white,fontFamily: "Inter"),)),
                   //  ),
                           Spacer(),
@@ -171,45 +171,6 @@ class _ItemWidgetState extends State<ItemWidget> {
                           //   ),
                           // ),
 
-                          Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 8),
-                            child: Container(
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                 Column(
-                                   children: [
-                                     Text("Total",style: TextStyle(color: Colors.white,fontSize: 10,fontWeight: FontWeight.w500,fontFamily: "Latos"),),
-                                     Text(widget.totalPlates.toInt().toString(),style: TextStyle(color: Colors.white,fontSize: 23,fontWeight: FontWeight.w600,fontFamily: "Latos"),),
-                                   ],
-                                 ),
-                               //  Text("|",style: TextStyle(color: Colors.white,fontSize: 23,fontWeight: FontWeight.w600,fontFamily: "Latos"),),
-
-                                 Column(
-                                   children: [
-                                     Text("Sell",style: TextStyle(color: Colors.white,fontSize: 10,fontWeight: FontWeight.w500,fontFamily: "Latos"),),
-                                     Text(widget.sellItem.toInt().toString(),style: TextStyle(color: Colors.white,fontSize: 23,fontWeight: FontWeight.w600,fontFamily: "Latos"),),
-                                   ],
-                                 ),
-
-                                 // Text("|",style: TextStyle(color: Colors.white,fontSize: 23,fontWeight: FontWeight.w600,fontFamily: "Latos"),),
-
-                                  Column(
-                                    children: [
-                                      Text("Residue",style: TextStyle(color: Colors.white,fontSize: 10,fontWeight: FontWeight.w500,fontFamily: "Latos"),),
-                                      Text(widget.residueItem.toInt().toString(),style: TextStyle(color: Colors.white,fontSize: 23,fontWeight: FontWeight.w600,fontFamily: "Latos"),),
-                                    ],
-                                  ),
-
-                                ],
-                              ),
-                            ),
-                          ),
-
-
-                          Spacer(),
-
                           Center(
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(40),
@@ -218,22 +179,22 @@ class _ItemWidgetState extends State<ItemWidget> {
                                 height: 4,
                                 width: MediaQuery.of(context).size.width*0.4,
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(50),
-                                  color: Colors.transparent,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: ((widget.totalPlates / 4 )+1).toInt() <= widget.residueItem ? Colors.blue.withOpacity(0.3):Colors.red.withOpacity(0.3),
-                                      blurRadius: 1.0,
-                                      spreadRadius: 1.0,
-                                      offset: const Offset(0, -4),
-                                    ),
-                                 ]
+                                    borderRadius: BorderRadius.circular(50),
+                                    color: Colors.transparent,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: ((widget.totalPlates / 4 )+1).toInt() <= widget.residueItem ? Colors.blue.withOpacity(0.3):Colors.red.withOpacity(0.3),
+                                        blurRadius: 1.0,
+                                        spreadRadius: 1.0,
+                                        offset: const Offset(0, -4),
+                                      ),
+                                    ]
                                 ),
                                 child: Stack(
                                   children: [
                                     LinearProgressIndicator(
                                       value: (widget.totalPlates - widget.sellItem) / widget.totalPlates,
-                                      backgroundColor: Colors.transparent,
+                                      backgroundColor: Colors.white,
                                       valueColor: AlwaysStoppedAnimation<Color>(
                                         widget.residueItem > (widget.totalPlates / 4)
                                             ? Colors.blue // When residueItem is greater than (totalPlates/4), show blue color.
@@ -245,6 +206,85 @@ class _ItemWidgetState extends State<ItemWidget> {
                               ),
                             ),
                           ),
+
+                          Spacer(),
+
+
+                          Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 8),
+                            child: Container(
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                 Column(
+                                   children: [
+                                     Text("Total",style: TextStyle(color: Colors.white,fontSize: 10,fontWeight: FontWeight.w500,fontFamily: "Latos"),),
+                                     Text(widget.totalPlates.toInt().toString(),style: TextStyle(color: Colors.white,fontSize: 17,fontWeight: FontWeight.w600,fontFamily: "Latos"),),
+                                   ],
+                                 ),
+                               //  Text("|",style: TextStyle(color: Colors.white,fontSize: 17,fontWeight: FontWeight.w600,fontFamily: "Latos"),),
+
+                                 Column(
+                                   children: [
+                                     Text("Sell",style: TextStyle(color: Colors.white,fontSize: 10,fontWeight: FontWeight.w500,fontFamily: "Latos"),),
+                                     Text(widget.sellItem.toInt().toString(),style: TextStyle(color: Colors.white,fontSize: 17,fontWeight: FontWeight.w600,fontFamily: "Latos"),),
+                                   ],
+                                 ),
+
+                                 // Text("|",style: TextStyle(color: Colors.white,fontSize: 17,fontWeight: FontWeight.w600,fontFamily: "Latos"),),
+
+                                  Column(
+                                    children: [
+                                      Text("Residue",style: TextStyle(color: Colors.white,fontSize: 10,fontWeight: FontWeight.w500,fontFamily: "Latos"),),
+                                      Text(widget.residueItem.toInt().toString(),style: TextStyle(color: Colors.white,fontSize: 17,fontWeight: FontWeight.w600,fontFamily: "Latos"),),
+                                    ],
+                                  ),
+
+                                ],
+                              ),
+                            ),
+                          ),
+
+
+                          Spacer(),
+
+                          // Center(
+                          //   child: ClipRRect(
+                          //     borderRadius: BorderRadius.circular(40),
+                          //     child: AnimatedContainer(
+                          //       duration: Duration(milliseconds: 500),
+                          //       height: 4,
+                          //       width: MediaQuery.of(context).size.width*0.4,
+                          //       decoration: BoxDecoration(
+                          //         borderRadius: BorderRadius.circular(50),
+                          //         color: Colors.transparent,
+                          //         boxShadow: [
+                          //           BoxShadow(
+                          //             color: ((widget.totalPlates / 4 )+1).toInt() <= widget.residueItem ? Colors.blue.withOpacity(0.3):Colors.red.withOpacity(0.3),
+                          //             blurRadius: 1.0,
+                          //             spreadRadius: 1.0,
+                          //             offset: const Offset(0, -4),
+                          //           ),
+                          //        ]
+                          //       ),
+                          //       child: Stack(
+                          //         children: [
+                          //           LinearProgressIndicator(
+                          //             value: (widget.totalPlates - widget.sellItem) / widget.totalPlates,
+                          //             backgroundColor: Colors.transparent,
+                          //             valueColor: AlwaysStoppedAnimation<Color>(
+                          //               widget.residueItem > (widget.totalPlates / 4)
+                          //                   ? Colors.blue // When residueItem is greater than (totalPlates/4), show blue color.
+                          //                   : Colors.red, // Otherwise, show red color.
+                          //             ),
+                          //           ),
+                          //         ],
+                          //       ), // Empty container when residueItem <= 1
+                          //     ),
+                          //   ),
+                          // ),
+
                         ],
                       ),
                     ),
@@ -254,8 +294,8 @@ class _ItemWidgetState extends State<ItemWidget> {
                left:15,
                 right: 15,
                 child: Container(
-                  height: 105,
-                  width: 105,
+                  height: 95,
+                  width: 95,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: Colors.white,
@@ -267,7 +307,6 @@ class _ItemWidgetState extends State<ItemWidget> {
                     //     offset: Offset(0, 3),
                     //   ),
                     // ],
-
 
                       boxShadow: [
                         BoxShadow(
@@ -297,13 +336,12 @@ class _ItemWidgetState extends State<ItemWidget> {
                         )
                       ]
 
-
                   ),
                   child: Align(
                     alignment: Alignment.center,
                     child: Container(
-                      height: 100,
-                      width: 100,
+                      height: 90,
+                      width: 90,
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(50),
                           child: Image.asset(widget.itemImage,fit: BoxFit.fill)),

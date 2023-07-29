@@ -16,25 +16,25 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final List<Map<String, dynamic>> itemDataList = [
     {
-      'bgColor': 0xff60d44c,
+      'bgColor': 0xff12c429,
       'itemName': 'Veg Momo',
       'imagePath': "assets/images/veg_momo.jpg",
       'totalPlates': 10.0.toDouble(),
-      'sellItem': 0.0.toDouble(), 
+      'sellItem': 0.0.toDouble(),
       'residueItem': 10.0.toDouble(),
      // 'itemNameColor': Colors.green.shade700,
     },
     {
-      'bgColor': 0xffe31717,
+      'bgColor': 0xffff2c55,
       'itemName': 'Chicken Momo',
       'imagePath': "assets/images/chicken_momo.jpg",
       'totalPlates': 15.0.toDouble(),
-      'sellItem': 0.0.toDouble(), 
+      'sellItem': 0.0.toDouble(),
       'residueItem': 15.0.toDouble(),
     //  'itemNameColor': Colors.green.shade700,
     },
     {
-      'bgColor': 0xff60d44c,
+      'bgColor': 0xff12c429,
       'itemName': '1/2 Veg Momo',
       'imagePath': "assets/images/veg_momo.jpg",
       'totalPlates': 10.0.toDouble(),
@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
     },
 
     {
-      'bgColor': 0xffe31717,
+      'bgColor': 0xffff2c55,
       'itemName': ' 1/2 Chicken Momo',
       'imagePath': "assets/images/chicken_momo.jpg",
       'totalPlates': 60.0.toDouble(), 
@@ -54,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
     },
 
     {
-      'bgColor': 0xffe31717,
+      'bgColor': 0xffff2c55,
       'itemName': ' 1/2 Chicken Momo',
       'imagePath': "assets/images/chicken_momo.jpg",
       'totalPlates': 60.0.toDouble(),
