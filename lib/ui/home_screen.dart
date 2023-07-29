@@ -16,46 +16,51 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final List<Map<String, dynamic>> itemDataList = [
     {
+      'bgColor': 0xff60d44c,
       'itemName': 'Veg Momo',
       'imagePath': "assets/images/veg_momo.jpg",
       'totalPlates': 10.0.toDouble(),
       'sellItem': 0.0.toDouble(), 
       'residueItem': 10.0.toDouble(),
-      'itemNameColor': Colors.green.shade700,
+     // 'itemNameColor': Colors.green.shade700,
     },
     {
+      'bgColor': 0xffe31717,
       'itemName': 'Chicken Momo',
-      'imagePath': "assets/images/momo1.png",
+      'imagePath': "assets/images/chicken_momo.jpg",
       'totalPlates': 15.0.toDouble(),
       'sellItem': 0.0.toDouble(), 
       'residueItem': 15.0.toDouble(),
-      'itemNameColor': Colors.green.shade700,
+    //  'itemNameColor': Colors.green.shade700,
     },
     {
+      'bgColor': 0xff60d44c,
       'itemName': '1/2 Veg Momo',
       'imagePath': "assets/images/veg_momo.jpg",
       'totalPlates': 10.0.toDouble(),
       'sellItem': 0.0.toDouble(), 
       'residueItem': 10.0.toDouble(),
-      'itemNameColor': Colors.green.shade700,
+      //'itemNameColor': Colors.green.shade700,
     },
 
     {
+      'bgColor': 0xffe31717,
       'itemName': ' 1/2 Chicken Momo',
-      'imagePath': "assets/images/momo.jpg",
+      'imagePath': "assets/images/chicken_momo.jpg",
       'totalPlates': 60.0.toDouble(), 
       'sellItem': 0.0.toDouble(), 
       'residueItem': 60.0.toDouble(), 
-      'itemNameColor': Colors.green.shade700,
+     // 'itemNameColor': Colors.green.shade700,
     },
 
     {
+      'bgColor': 0xffe31717,
       'itemName': ' 1/2 Chicken Momo',
-      'imagePath': "assets/images/momo.jpg",
+      'imagePath': "assets/images/chicken_momo.jpg",
       'totalPlates': 60.0.toDouble(),
       'sellItem': 0.0.toDouble(),
       'residueItem': 60.0.toDouble(),
-      'itemNameColor': Colors.green.shade700,
+      //'itemNameColor': Colors.green.shade700,
     },
 
   ];
@@ -80,6 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
 
      backgroundColor:  Color(0xffeef2f3),
+
 
       bottomNavigationBar: BottomMenu(
         selectedIndex: selectedIndex,
@@ -165,7 +171,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
             Expanded(
               child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 5),
+               // margin: EdgeInsets.symmetric(horizontal: 5),
+                padding: EdgeInsets.symmetric(horizontal: 5),
                 decoration: const BoxDecoration(
                     color: Color(0xffeef2f3),
                     borderRadius: BorderRadius.only(topRight: Radius.circular(25),topLeft: Radius.circular(25)),
@@ -181,11 +188,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
                     return ItemWidget(
                       itemName: itemData['itemName'],
+                      backgroundColor: Color(itemData['bgColor']),
                       itemImage: itemData['imagePath'],
                       totalPlates: itemData['totalPlates'],
                       sellItem: itemData['sellItem'],
                       residueItem: itemData['residueItem'],
-                      itemNameColor: itemData['itemNameColor'],
+                     // itemNameColor: itemData['itemNameColor'],
                       callback: () {
                         setState(() {
                           itemData['sellItem']++;

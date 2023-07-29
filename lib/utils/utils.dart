@@ -17,5 +17,7 @@ class Utils   {
       gravity: ToastGravity.BOTTOM,
       toastLength:Toast.LENGTH_LONG,
   );
+
  }
+
 }
