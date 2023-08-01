@@ -52,7 +52,7 @@ class _ItemWidgetState extends State<ItemWidget> {
         highlightColor: Colors.red.shade50,
         borderRadius: BorderRadius.circular(10),
         child: Container(
-        margin: EdgeInsets.only(bottom: 10),
+        margin: EdgeInsets.only(top: 10),
           child: Stack(
             children: [
               Container(
@@ -77,9 +77,9 @@ class _ItemWidgetState extends State<ItemWidget> {
                           boxShadow: [
                             BoxShadow(
                               color: Colors.grey.withOpacity(0.3),
-                              blurRadius: 5.0,
-                              spreadRadius: 2.0,
-                              offset: Offset(0, 3),
+                              blurRadius: 1.0,
+                              spreadRadius: 1.0,
+                              offset: Offset(0, 1),
                             ),
                           ]
                       ),
@@ -198,7 +198,7 @@ class _ItemWidgetState extends State<ItemWidget> {
                                       valueColor: AlwaysStoppedAnimation<Color>(
                                         widget.residueItem > (widget.totalPlates / 4)
                                             ? Colors.blue // When residueItem is greater than (totalPlates/4), show blue color.
-                                            : Colors.red, // Otherwise, show red color.
+                                            : Colors.deepOrange, // Otherwise, show red color.
                                       ),
                                     ),
                                   ],
@@ -311,28 +311,24 @@ class _ItemWidgetState extends State<ItemWidget> {
                       boxShadow: [
                         BoxShadow(
                           blurRadius: 1.0,
-
                             offset: Offset(0, 0),
                             color:  Colors.grey.shade600,
 
                         ),
                         BoxShadow(
-                          blurRadius: 5.0,
-
+                          blurRadius: 1.0,
                           offset: Offset(-2, -2),
-                          color:  Colors.grey.shade200,
+                          color:  Colors.grey.shade600,
                         ),
                         BoxShadow(
-                          blurRadius: 5.0,
-
+                          blurRadius: 1.0,
                           offset: Offset(2, 2),
-                          color:  Colors.blue.withOpacity(0.1),
+                          color:  Colors.grey.shade600,
                         ),
                         BoxShadow(
-                          blurRadius: 5.0,
-
+                          blurRadius: 1.0,
                           offset: Offset(2, -2),
-                          color:  Colors.blue.withOpacity(0.1),
+                          color:  Colors.grey.shade600,
                         )
                       ]
 

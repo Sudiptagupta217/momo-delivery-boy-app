@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:it_momo_wala/ui/home_screen.dart';
+import 'package:it_momo_wala/ui/profile_screen.dart';
 import 'package:it_momo_wala/utils/default_colors.dart';
+
+import '../ui/earning_screen.dart';
+import '../ui/sell_screen.dart';
 
 class BottomMenu extends StatelessWidget {
   final selectedIndex;
@@ -12,7 +16,7 @@ class BottomMenu extends StatelessWidget {
     return Container(
 
       decoration: const BoxDecoration(
-        color: Color(0xffeef2f3),
+        color: Color(0xff2a2929),
         // boxShadow: [
         //   BoxShadow(
         //       color: Color(0xffDDDDDD),
@@ -33,26 +37,26 @@ class BottomMenu extends StatelessWidget {
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'Home',
-              backgroundColor: Color(0xFFFFFFFF),
+              backgroundColor: Color(0xff1a1a1a),
             ),
 
             BottomNavigationBarItem(
-              icon: Icon(Icons.numbers),
-              label: 'Shop ',
-              backgroundColor: Color(0xFFFFFFFF),
+              icon: Icon(Icons.sell_outlined),
+              label: 'Sell ',
+              backgroundColor: Color(0xff1a1a1a),
             ),
 
             BottomNavigationBarItem(
-              icon: Icon(Icons.numbers),
-              label: 'Wallet',
-              backgroundColor: Color(0xFFFFFFFF),
+              icon: Icon(Icons.wallet_rounded),
+              label: 'Earning',
+              backgroundColor: Color(0xff1a1a1a),
             ),
 
 
             BottomNavigationBarItem(
-              icon: Icon(Icons.numbers),
+              icon: Icon(Icons.account_circle),
               label: 'Profile',
-              backgroundColor: Color(0xFFFFFFFF),
+              backgroundColor: Color(0xff1a1a1a),
             )
 
 
@@ -73,15 +77,15 @@ class BottomMenu extends StatelessWidget {
                 break;
               case 1:
                 onClicked;
-                Navigator.pushNamed(context, "/shop_now");
+                Navigator.push(context, MaterialPageRoute(builder: (context) => SellScreen(),));
                 break;
               case 2:
                 onClicked;
-                Navigator.pushNamed(context, "/wallet");
+                Navigator.push(context, MaterialPageRoute(builder: (context) => EarningScreen(),));
                 break;
                 case 3:
                 onClicked;
-                Navigator.pushNamed(context, "/profile");
+                Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen(),));
                 break;
             }
           },
