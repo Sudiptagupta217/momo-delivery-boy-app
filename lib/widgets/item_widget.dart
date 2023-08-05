@@ -1,26 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:it_momo_wala/utils/default_colors.dart';
 import 'package:it_momo_wala/utils/utils.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 class ItemWidget extends StatefulWidget {
   final String itemName;
   final String itemImage;
+  final String itemPrice;
  // Color? itemNameColor;
   final double totalPlates;
   final double sellItem;
   final double residueItem;
   Color? backgroundColor;
+  Color? priceBgColor;
   VoidCallback callback;
   VoidCallback onLongPress;
 
   ItemWidget({Key? key,
     required this.itemName,
+    required this.itemPrice,
     required this.itemImage,
     required this.totalPlates,
     required this.sellItem,
     required this.residueItem,
     this.backgroundColor = DefaultColor.white,
-   // this.itemNameColor =DefaultColor.white,
+    this.priceBgColor,
     required this.callback,
     required this.onLongPress,
 
@@ -47,9 +51,12 @@ class _ItemWidgetState extends State<ItemWidget> {
             print("${widget.itemName} now avalable only ${(widget.totalPlates)/4} Plates ");
 
             Utils.toastMessage("${widget.itemName} now avalable only ${(widget.totalPlates)~/4} Plates \n");
+            AudioPlayer().play(AssetSource('audio/Stock_Notification.wav'));
+
+
           }
         },
-        highlightColor: Colors.red.shade50,
+        highlightColor:DefaultColor.bg_color,
         borderRadius: BorderRadius.circular(10),
         child: Container(
         margin: EdgeInsets.only(top: 10),
@@ -94,7 +101,7 @@ class _ItemWidgetState extends State<ItemWidget> {
                           //  width: MediaQuery.of(context).size.width*0.2,
                              // child:
                           SizedBox(height: 40,),
-                              Center(child: Text(widget.itemName, style: TextStyle(fontSize: 17,fontWeight: FontWeight.w600,color: DefaultColor.white,fontFamily: "Inter"),)),
+                              Center(child: Text(widget.itemName,textAlign: TextAlign.center, style: TextStyle(fontSize: 15,fontWeight: FontWeight.w600,color: DefaultColor.white,fontFamily: "Inter"),)),
                   //  ),
                           Spacer(),
 
@@ -289,61 +296,98 @@ class _ItemWidgetState extends State<ItemWidget> {
                       ),
                     ),
                   ) ),
+
               Positioned(
                // top: 15,
                left:15,
                 right: 15,
-                child: Container(
-                  height: 95,
-                  width: 95,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.white,
-                    // boxShadow: [
-                    //   BoxShadow(
-                    //     color: Colors.grey.withOpacity(0.3),
-                    //     blurRadius: 5.0,
-                    //     spreadRadius: 2.0,
-                    //     offset: Offset(0, 3),
-                    //   ),
-                    // ],
-
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 1.0,
-                            offset: Offset(0, 0),
-                            color:  Colors.grey.shade600,
-
-                        ),
-                        BoxShadow(
-                          blurRadius: 1.0,
-                          offset: Offset(-2, -2),
-                          color:  Colors.grey.shade600,
-                        ),
-                        BoxShadow(
-                          blurRadius: 1.0,
-                          offset: Offset(2, 2),
-                          color:  Colors.grey.shade600,
-                        ),
-                        BoxShadow(
-                          blurRadius: 1.0,
-                          offset: Offset(2, -2),
-                          color:  Colors.grey.shade600,
-                        )
-                      ]
-
-                  ),
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: Container(
-                      height: 90,
-                      width: 90,
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(50),
-                          child: Image.asset(widget.itemImage,fit: BoxFit.fill)),
+                
+                child:
+                
+                Stack(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(top: 5),
+                      height: 100,
                     ),
-                  ),
-                ),
+
+                    Positioned(
+                      top: 0,
+                        right: 0,
+                        left: 0,
+                        child:  Container(
+                          height: 95,
+                          width: 95,
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.white,
+                              // boxShadow: [
+                              //   BoxShadow(
+                              //     color: Colors.grey.withOpacity(0.3),
+                              //     blurRadius: 5.0,
+                              //     spreadRadius: 2.0,
+                              //     offset: Offset(0, 3),
+                              //   ),
+                              // ],
+
+                              boxShadow: [
+                                BoxShadow(
+                                  blurRadius: 1.0,
+                                  offset: Offset(0, 0),
+                                  color:  Colors.grey.shade600,
+
+                                ),
+                                BoxShadow(
+                                  blurRadius: 1.0,
+                                  offset: Offset(-2, -2),
+                                  color:  Colors.grey.shade600,
+                                ),
+                                BoxShadow(
+                                  blurRadius: 1.0,
+                                  offset: Offset(2, 2),
+                                  color:  Colors.grey.shade600,
+                                ),
+                                BoxShadow(
+                                  blurRadius: 1.0,
+                                  offset: Offset(2, -2),
+                                  color:  Colors.grey.shade600,
+                                )
+                              ]
+
+                          ),
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Container(
+                              height: 90,
+                              width: 90,
+                              child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(50),
+                                  child: Image.asset(widget.itemImage,fit: BoxFit.fill)),
+                            ),
+                          ),
+                        ),
+                    ),
+
+
+                    Positioned(
+                      top: 10,
+                        right: 10,
+                        child: Container(
+                          width: 30,
+                          height: 30,
+                          decoration: BoxDecoration(
+                              color: widget.priceBgColor,
+                              borderRadius: BorderRadius.circular(50),
+                            boxShadow: [BoxShadow(color: Colors.grey)],
+                            border: Border.all(width: 2,color: Colors.grey.shade200)
+                          ),
+                          child: Center(child: Text(widget.itemPrice, textAlign: TextAlign.center, style: TextStyle(color: Colors.white,fontSize: 13, fontWeight: FontWeight.w600,fontFamily: "Lato"))),
+                        )
+                    )
+
+                  ],
+                ) ,   
+                
               ),
 
             ],
