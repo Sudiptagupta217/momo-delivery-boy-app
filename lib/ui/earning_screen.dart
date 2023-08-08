@@ -30,7 +30,6 @@ class _EarningScreenState extends State<EarningScreen> {
         child: Column(
           children: const [
             Text("Earning page",style: TextStyle(fontSize: 120),),
-
           ],
         ),
       ),

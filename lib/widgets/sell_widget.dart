@@ -26,6 +26,7 @@ class _SellListState extends State<SellList> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(left: 10,right: 20, top: 5, bottom:5),
+      margin: EdgeInsets.only(bottom: 1),
       color: Color(0x93262626),
       child: Row(
         children: [

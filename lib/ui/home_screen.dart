@@ -15,6 +15,21 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
+
+  String? _selectedVan = 'Van 1';
+
+  // List of items for the dropdown
+  List<String> _vans = ['Van 1', 'Van 2', 'Van 3', 'Van 4', 'Van 5'];
+
+  // Function to handle dropdown value change
+  void _onDropdownChanged(String? newValue) {
+    setState(() {
+      _selectedVan = newValue;
+    });
+  }
+
+
+
   final List<Map<String, dynamic>> itemDataList = [
     {
       'bgColor': 0xfff00000,
@@ -41,8 +56,8 @@ class _HomeScreenState extends State<HomeScreen> {
       'itemName': ' Fried Chicken Momo',
       'itemPrice': '70',
       //  'imagePath': "assets/images/chicken_momo.jpg",
-      'totalPlates': 60.0.toDouble(), 
-      'sellItem': 0.0.toDouble(), 
+      'totalPlates': 60.0.toDouble(),
+      'sellItem': 0.0.toDouble(),
       'residueItem': 60.0.toDouble(),
     },
     {
@@ -155,7 +170,8 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
 
             Container(
-              height: 60,
+             // height: 60,
+              padding: EdgeInsets.symmetric(vertical: 5),
               width: double.infinity,
               decoration: const BoxDecoration(
                 color: DefaultColor.delault_color,
@@ -166,9 +182,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
 
-                  SizedBox(width: 10,),
 
-                  Icon(Icons.menu,color: Colors.white,),
+
+                  Container(
+                    width: 75,
+                      padding: EdgeInsets.only(left: 10),
+                      child: Align(alignment: Alignment.centerLeft, child: Icon(Icons.menu,color: Colors.white,))),
 
                   Spacer(),
 
@@ -180,21 +199,54 @@ class _HomeScreenState extends State<HomeScreen> {
                    Spacer(),
 
 
-                   Container(
-                     margin: EdgeInsets.only(right: 20),
-                      child:
-                            ClipRRect(
-                                borderRadius: BorderRadius.circular(50),
-                                child: Container(
-                                    height: 35,
-                                    width: 35,
-                                    child: Image.asset("assets/images/man.jpg",fit: BoxFit.cover,)))
+                  // Icon(Icons.arrow_drop_down,color: Colors.white,),
+
+
+                  DropdownButton<String>(
+                    value: _selectedVan,
+                    onChanged: _onDropdownChanged,
+                    dropdownColor: DefaultColor.delault_color,
+                    elevation: 0,
+                    icon: Icon(
+                      Icons.arrow_drop_down,
+                      color: Colors.white,
                     ),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                    ),
+                    underline: Container(),
+                    items: _vans.map((String item) {
+                      return DropdownMenuItem<String>(
+                        value: item,
+                        child: Text(item,style: TextStyle(color: Colors.white)),
+                      );
+                    }).toList(),
+                  ),
+
+                  // Text(
+                  //   '$_selectedVan',
+                  //   style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
+                  // ),
+
+
+                   // Container(
+                   //   margin: EdgeInsets.only(right: 20),
+                   //    child:
+                   //          ClipRRect(
+                   //              borderRadius: BorderRadius.circular(50),
+                   //              child: Container(
+                   //                  height: 35,
+                   //                  width: 35,
+                   //                  child: Image.asset("assets/images/man.jpg",fit: BoxFit.cover,)))
+                   //  ),
 
                 ],
               ),
             ),
 
+
+            //body
             Expanded(
               child:
               Container(

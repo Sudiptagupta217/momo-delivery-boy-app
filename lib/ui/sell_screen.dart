@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:it_momo_wala/ui/add_item_screen.dart';
+import 'package:it_momo_wala/ui/home_screen.dart';
 import 'package:it_momo_wala/utils/default_colors.dart';
-import 'package:it_momo_wala/widgets/sell_widget.dart';
 
-import '../bar_graph/bar_graph.dart';
+
 import '../widgets/buttom_manu.dart';
+import '../widgets/vanlist_widget.dart';
 
 class SellScreen extends StatefulWidget {
   const SellScreen({super.key});
@@ -15,28 +17,87 @@ class SellScreen extends StatefulWidget {
 
 class _SellScreenState extends State<SellScreen> {
 
-  List<double> weeklySumary =[
-    24.50,
-    62.56,
-    52.4,
-    73.5,
-    63.4,
-    52.5,
-    44.3
-  ];
+  // List<double> weeklySumary =[
+  //   24.50,
+  //   62.56,
+  //   52.4,
+  //   73.5,
+  //   63.4,
+  //   52.5,
+  //   44.3
+  // ];
+
+
+  bool _isClicked = false;
+
+  void _toggleClicked() {
+    setState(() {
+      _isClicked = !_isClicked;
+    });
+  }
 
 
   var priceDetails = [
-    {'images': 'assets/images/veg_momo.jpg', 'day': 'Monday', 'date': '31 june 2023',"totalchicken": "120","totalveg":"100", "totalprice":"Rs: 250", },
-    {'images': 'assets/images/chicken_momo.jpg', 'day': 'Tuesday', 'date': '30 june 2023',"totalchicken": "120","totalveg":"100", "totalprice":"Rs: 350", },
-    {'images': 'assets/images/veg_momo.jpg', 'day': 'Friday', 'date': '29 june 2023',"totalchicken": "120","totalveg":"100", "totalprice":"Rs: 240", },
-    {'images': 'assets/images/chicken_momo.jpg', 'day': 'Monday', 'date': '27 june 2023',"totalchicken": "120","totalveg":"100", "totalprice":"Rs: 210", },
-    {'images': 'assets/images/chicken_momo.jpg', 'day': 'Monday', 'date': '27 june 2023', "totalchicken": "120","totalveg":"100","totalprice":"Rs: 210", },
-    {'images': 'assets/images/chicken_momo.jpg', 'day': 'Monday', 'date': '27 june 2023',"totalchicken": "120","totalveg":"100", "totalprice":"Rs: 210", },
-    {'images': 'assets/images/veg_momo.jpg', 'day': 'Sunday', 'date': '25 june 2023', "totalchicken": "120","totalveg":"100","totalprice":"Rs: 200", },
+    {
+      'images': 'assets/images/veg_momo.jpg',
+      'vanNum': '001',
+      'location': 'Dumdum road',
+      "totalchicken": "120",
+      "totalveg": "100",
+      "totalprice": "₹: 250",
+    },
+    {
+      'images': 'assets/images/chicken_momo.jpg',
+      'vanNum': '002',
+      'location': 'VIP Road',
+      "totalchicken": "120",
+      "totalveg": "100",
+      "totalprice": "₹: 350",
+    },
+    {
+      'images': 'assets/images/veg_momo.jpg',
+      'vanNum': '003',
+      'location': 'Sbi Ecorner',
+      "totalchicken": "120",
+      "totalveg": "100",
+      "totalprice": "₹: 240",
+    },
+    {
+      'images': 'assets/images/chicken_momo.jpg',
+      'vanNum': '004',
+      'location': 'Dumdum Station',
+      "totalchicken": "120",
+      "totalveg": "100",
+      "totalprice": "₹: 210",
+    },
+    {
+      'images': 'assets/images/chicken_momo.jpg',
+      'vanNum': '005',
+      'location': 'Dumdum road',
+      "totalchicken": "120",
+      "totalveg": "100",
+      "totalprice": "₹: 210",
+    },
+    {
+      'images': 'assets/images/chicken_momo.jpg',
+      'vanNum': '006',
+      'location': 'VIP Road',
+      "totalchicken": "120",
+      "totalveg": "100",
+      "totalprice": "₹: 210",
+    },
+    {
+      'images': 'assets/images/veg_momo.jpg',
+      'vanNum': '007',
+      'location': 'dumdum Kolkata',
+      "totalchicken": "120",
+      "totalveg": "100",
+      "totalprice": "₹: 200",
+    },
   ];
 
   int selectedIndex = 1;
+
   void onClicked(int index) {
     setState(() {
       selectedIndex = index;
@@ -45,7 +106,6 @@ class _SellScreenState extends State<SellScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Colors.black, // Replace with your desired color
     ));
@@ -59,39 +119,113 @@ class _SellScreenState extends State<SellScreen> {
       body: SafeArea(
         child: Column(
           children: [
-           Container(
-             padding: EdgeInsets.only(top: 5,bottom: 5,),
-             color: Color(0xff464545),
-             height: 180,
+          // Container(
+          //   padding: EdgeInsets.only(top: 5,bottom: 5,),
+          //   color: Color(0xff464545),
+          //   height: 180,
+          //
+          //   child: MyBarGraph(weeklySummary: weeklySumary,),
+          //
+          // ),
+          //  SizedBox(height: 10,),
 
-             child: MyBarGraph(weeklySummary: weeklySumary,),
 
-           ),
-            SizedBox(height: 10,),
+          Container(
+          height: 60,
+          color: Color(0x93262626),
+          child: Row(
+            children:  [
+
+              SizedBox(width: 40,),
+
+            Spacer(),
+
+            Text("Van List",style: TextStyle(color: Colors.white,fontSize: 19,fontWeight: FontWeight.w600)),
+            Spacer(),
 
 
-            Expanded(
-              child: ListView(
-                physics: const BouncingScrollPhysics(),
-                padding: EdgeInsets.symmetric(vertical: 5),
-                shrinkWrap: true,
-                 children: priceDetails.map((value){
-                   return SellList(
-                     image: value["images"].toString(),
-                     day: value["day"].toString(),
-                     date: value["date"].toString(),
-                     totalchicken: value["totalchicken"].toString(),
-                     totalveg: value["totalveg"].toString(),
-                     amount: value["totalprice"].toString(),);
+            InkWell(
+                onTap:() {
+                  _showPopup(context);
+                },
+                child: SizedBox(
+                height: 40,
+                width: 40,
+                child: Icon(Icons.add_circle_outline, color: Colors.white,)),
+          ),
 
-                 }
-                 ).toList()
-              ),
-            )
 
           ],
         ),
       ),
+
+      InkWell(
+        onTap:()=> Navigator.push(context, MaterialPageRoute(builder: (context) => AddItemScreen(),)),
+        child: Expanded(
+          child: ListView(
+              physics: const BouncingScrollPhysics(),
+              // padding: EdgeInsets.symmetric(vertical: 5),
+              shrinkWrap: true,
+              children: priceDetails.map((value) {
+                return VanList(
+                  image: value["images"].toString(),
+                  vanNumber: value["vanNum"].toString(),
+                  vanlocation: value['location'].toString(),
+                  totalchicken: value["totalchicken"].toString(),
+                  totalveg: value["totalveg"].toString(),
+                  amount: value["totalprice"].toString(),);
+              }
+              ).toList()
+          ),
+        ),
+      )
+
+      ],
+    ),)
+    ,
+    );
+  }
+
+
+  void _showPopup(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Add New Van'),
+          content: Container(
+            height: 110,
+            child: Column(
+              children: [
+                TextFormField(
+                  decoration: InputDecoration(
+                    hintText:  "Enter Van Number",
+                    hintStyle: TextStyle(color: Colors.black87,fontSize: 16,fontFamily: "Raleway",fontWeight: FontWeight.w500),
+                  ),
+                ),
+
+                SizedBox(height: 10,),
+
+                TextFormField(
+                  decoration: InputDecoration(
+                    hintText:  "Enter Van Location",
+                    hintStyle: TextStyle(color: Colors.black87,fontSize: 16,fontFamily: "Raleway",fontWeight: FontWeight.w500),
+                  ),
+                ),
+
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the popup
+              },
+              child: Text('ADD'),
+            ),
+          ],
+        );
+      },
     );
   }
 }
