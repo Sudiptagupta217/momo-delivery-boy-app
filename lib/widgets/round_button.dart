@@ -3,6 +3,7 @@ import 'package:it_momo_wala/utils/default_colors.dart';
 
 class RoundButton extends StatelessWidget {
  final String title;
+ Color? color;
  final VoidCallback onTap;
  final bool loading ;
  TextStyle? style;
@@ -10,6 +11,7 @@ class RoundButton extends StatelessWidget {
    RoundButton({super.key,
     required this.title,
     this.style,
+     this.color= Colors.white,
     required this.onTap,
      this.loading=false
   }
@@ -22,11 +24,11 @@ class RoundButton extends StatelessWidget {
       child: Container(
       height: 50,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: color,
           borderRadius: BorderRadius.circular(15),
           boxShadow: const [
             BoxShadow(
-              color: Colors.white70,
+              color: Colors.red,
               blurRadius: .1,
               offset: Offset(0, 1),
             ),]

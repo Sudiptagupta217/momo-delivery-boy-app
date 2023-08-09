@@ -16,10 +16,10 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
 
 
-  String? _selectedVan = 'Van 1';
+  String? _selectedVan = 'V01';
 
   // List of items for the dropdown
-  List<String> _vans = ['Van 1', 'Van 2', 'Van 3', 'Van 4', 'Van 5'];
+  List<String> _vans = ['V01', 'V02', 'V03', 'V04', 'V05'];
 
   // Function to handle dropdown value change
   void _onDropdownChanged(String? newValue) {
@@ -343,7 +343,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         setState(() {
                           itemData['sellItem']++;
                           itemData['residueItem']--;
-                         // AudioPlayer().play(AssetSource('audio/vage.wav'));
                           AudioPlayer().play(AssetSource(audioAsset));
                         });
                       },

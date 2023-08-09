@@ -4,8 +4,8 @@ import 'package:it_momo_wala/widgets/text_widget.dart';
 class VanList extends StatefulWidget {
   final String image;
   final String vanNumber;
-  final String totalchicken;
-  final String totalveg;
+ // final String totalchicken;
+//  final String totalveg;
   final String vanlocation;
   final String amount;
 
@@ -13,8 +13,8 @@ class VanList extends StatefulWidget {
       required this.image,
       required this.vanNumber,
       required this.vanlocation,
-      required this.totalchicken,
-      required this.totalveg,
+   //   required this.totalchicken,
+   //   required this.totalveg,
       required this.amount,
   }) : super(key: key);
 
@@ -71,43 +71,41 @@ class _VanListState extends State<VanList> {
             ),
           ),
 
-        //  const Spacer(),
-          SizedBox(width: 5,),
+          const Spacer(),
+         // SizedBox(width: 5,),
 
           Container(
+            color: Colors.grey.shade500,
             height: 60,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextWidget(item: 'I', color: Colors.white,),
                 TextWidget(item: 'C', color: Colors.red,),
-                TextWidget(item: 'V', color: Colors.green,),
+                TextWidget(item: 'V', color: Colors.green.shade900,),
               ],
             ),
           ),
 
 
-          Expanded(
-            child: Align(
-              alignment: Alignment.center,
-              child: Container(
-                height: 60,
-                width: MediaQuery.of(context).size.width,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 10,
-                    itemBuilder:(context, index) {
-                    return   Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        TextWidget(item: 'S', color: Colors.white,),
-                        TextWidget(item: '10', color: Colors.red,),
-                        TextWidget(item: '29', color: Colors.green,),
-                      ],
-                    );
-                    },
-                ),
-              ),
+          Container(
+            height: 60,
+            margin: EdgeInsets.symmetric(horizontal: 0.5),
+            color: Color(0xff394667),
+            width: MediaQuery.of(context).size.width*0.26,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: 5,
+                itemBuilder:(context, index) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TextWidget(item: 'S', color: Colors.white,),
+                    TextWidget(item: '10', color: Colors.red,),
+                    TextWidget(item: '29', color: Colors.green,),
+                  ],
+                );
+                },
             ),
           ),
 
@@ -203,18 +201,25 @@ class _VanListState extends State<VanList> {
           // ),
 
 
-      SizedBox(width: 5,),
+     // SizedBox(width: 5,),
 
 
 
-       //   const Spacer(),
+          const Spacer(),
 
-          Text(widget.amount,
-              style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 15,
-                  fontFamily: "Inter"))
+          Container(
+            width: MediaQuery.of(context).size.width*0.15,
+
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: Text("₹ "+widget.amount,
+                  style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 15,
+                      fontFamily: "Inter")),
+            ),
+          )
 
         ],
       ),

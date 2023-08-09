@@ -39,60 +39,60 @@ class _SellScreenState extends State<SellScreen> {
 
   var priceDetails = [
     {
-      'images': 'assets/images/veg_momo.jpg',
-      'vanNum': '001',
+     // 'images': 'assets/images/veg_momo.jpg',
+      'vanNum': 'V01',
       'location': 'Dumdum road',
-      "totalchicken": "120",
-      "totalveg": "100",
-      "totalprice": "₹: 250",
+    //  "totalchicken": "120",
+    //  "totalveg": "100",
+      "totalprice": "2250",
     },
     {
-      'images': 'assets/images/chicken_momo.jpg',
-      'vanNum': '002',
+     // 'images': 'assets/images/chicken_momo.jpg',
+      'vanNum': 'V02',
       'location': 'VIP Road',
-      "totalchicken": "120",
-      "totalveg": "100",
-      "totalprice": "₹: 350",
+     // "totalchicken": "120",
+    //  "totalveg": "100",
+      "totalprice": "3350",
     },
     {
-      'images': 'assets/images/veg_momo.jpg',
-      'vanNum': '003',
+     // 'images': 'assets/images/veg_momo.jpg',
+      'vanNum': 'V03',
       'location': 'Sbi Ecorner',
-      "totalchicken": "120",
-      "totalveg": "100",
-      "totalprice": "₹: 240",
+   //   "totalchicken": "120",
+    //  "totalveg": "100",
+      "totalprice": "240",
     },
     {
-      'images': 'assets/images/chicken_momo.jpg',
-      'vanNum': '004',
+     // 'images': 'assets/images/chicken_momo.jpg',
+      'vanNum': 'V04',
       'location': 'Dumdum Station',
-      "totalchicken": "120",
-      "totalveg": "100",
-      "totalprice": "₹: 210",
+    //  "totalchicken": "120",
+    //  "totalveg": "100",
+      "totalprice": "210",
     },
     {
-      'images': 'assets/images/chicken_momo.jpg',
-      'vanNum': '005',
+      //'images': 'assets/images/chicken_momo.jpg',
+      'vanNum': 'V05',
       'location': 'Dumdum road',
-      "totalchicken": "120",
-      "totalveg": "100",
-      "totalprice": "₹: 210",
+    //  "totalchicken": "120",
+    //  "totalveg": "100",
+      "totalprice": "2210",
     },
     {
-      'images': 'assets/images/chicken_momo.jpg',
-      'vanNum': '006',
+      //'images': 'assets/images/chicken_momo.jpg',
+      'vanNum': 'V06',
       'location': 'VIP Road',
-      "totalchicken": "120",
-      "totalveg": "100",
-      "totalprice": "₹: 210",
+    //  "totalchicken": "120",
+    //  "totalveg": "100",
+      "totalprice": "2210",
     },
     {
-      'images': 'assets/images/veg_momo.jpg',
-      'vanNum': '007',
+     // 'images': 'assets/images/veg_momo.jpg',
+      'vanNum': 'V07',
       'location': 'dumdum Kolkata',
-      "totalchicken": "120",
-      "totalveg": "100",
-      "totalprice": "₹: 200",
+    //  "totalchicken": "120",
+    //  "totalveg": "100",
+      "totalprice": "12003",
     },
   ];
 
@@ -151,7 +151,7 @@ class _SellScreenState extends State<SellScreen> {
                 child: SizedBox(
                 height: 40,
                 width: 40,
-                child: Icon(Icons.add_circle_outline, color: Colors.white,)),
+                child: Icon(Icons.add, color: Colors.white,)),
           ),
 
 
@@ -159,24 +159,26 @@ class _SellScreenState extends State<SellScreen> {
         ),
       ),
 
-      InkWell(
-        onTap:()=> Navigator.push(context, MaterialPageRoute(builder: (context) => AddItemScreen(),)),
-        child: Expanded(
-          child: ListView(
-              physics: const BouncingScrollPhysics(),
-              // padding: EdgeInsets.symmetric(vertical: 5),
-              shrinkWrap: true,
-              children: priceDetails.map((value) {
-                return VanList(
-                  image: value["images"].toString(),
+      Expanded(
+        child: ListView(
+            physics: const BouncingScrollPhysics(),
+            // padding: EdgeInsets.symmetric(vertical: 5),
+            shrinkWrap: true,
+            children: priceDetails.map((value) {
+              return InkWell(
+                onTap:()=> Navigator.push(context, MaterialPageRoute(builder: (context) => AddItemScreen(vanNo: value["vanNum"].toString()),)),
+                child: VanList(
+                  image: 'assets/images/veg_momo.jpg',
                   vanNumber: value["vanNum"].toString(),
                   vanlocation: value['location'].toString(),
-                  totalchicken: value["totalchicken"].toString(),
-                  totalveg: value["totalveg"].toString(),
-                  amount: value["totalprice"].toString(),);
-              }
-              ).toList()
-          ),
+                 // totalchicken: value["totalchicken"].toString(),
+                 // totalveg: value["totalveg"].toString(),
+                  amount: value["totalprice"].toString(),
+
+                ),
+              );
+            }
+            ).toList()
         ),
       )
 
