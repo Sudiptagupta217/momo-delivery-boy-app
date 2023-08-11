@@ -3,10 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:it_momo_wala/ui/splash_screen.dart';
 import 'package:it_momo_wala/utils/default_colors.dart';
 
-import 'ui/auth/login_screen.dart';
 
 void main() {
-
   runApp(const MyApp());
 }
 

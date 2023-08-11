@@ -22,16 +22,16 @@ class AddItemScreen extends StatefulWidget {
 class _AddItemScreenState extends State<AddItemScreen> {
 
 
-  // late String _selectedbrand;
-  //
-  // List<String> brand = ['001', '002', '003', '004', '005'];
-  //
-  //
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _selectedbrand = brand[0];
-  // }
+  late String _selectedPosition;
+
+  List<String> positionNo = ['1', '2', '3', '4', '5','6','7','8'];
+
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedPosition = positionNo[0];
+  }
 
 
   int selectedIndex = 1;
@@ -63,7 +63,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
                 )
             ),
 
-            padding: EdgeInsets.symmetric(horizontal: 30),
+            padding: EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -101,21 +101,21 @@ class _AddItemScreenState extends State<AddItemScreen> {
 
                 SizedBox(height: 20,),
 
-                AddItemtextWidget(title: "Steam Chicken Momo"),
+                AddItemtextWidget(title: "Steam Chicken Momo",PositionNo: positionNo, selectedPosition: _selectedPosition),
                 Divider(),
-                AddItemtextWidget(title: "Steam Veg Momo"),
+                AddItemtextWidget(title: "Steam Veg Momo",PositionNo: positionNo, selectedPosition: _selectedPosition),
                 Divider(),
-                AddItemtextWidget(title:"Fried Chicken Momo" ),
+                AddItemtextWidget(title:"Fried Chicken Momo" ,PositionNo: positionNo, selectedPosition: _selectedPosition),
                 Divider(),
-                AddItemtextWidget(title: "Fried Veg Momo"),
+                AddItemtextWidget(title: "Fried Veg Momo",PositionNo: positionNo, selectedPosition: _selectedPosition),
                 Divider(),
-                AddItemtextWidget(title: "Rost Chicken Momo"),
+                AddItemtextWidget(title: "Rost Chicken Momo",PositionNo: positionNo, selectedPosition: _selectedPosition),
                 Divider(),
-                AddItemtextWidget(title: "Rost Veg Momo"),
+                AddItemtextWidget(title: "Rost Veg Momo",PositionNo: positionNo, selectedPosition: _selectedPosition),
                 Divider(),
-                AddItemtextWidget(title: "Pan Fried Chicken Momo"),
+                AddItemtextWidget(title: "Pan Fried Chicken Momo",PositionNo: positionNo, selectedPosition: _selectedPosition),
                 Divider(),
-                AddItemtextWidget(title: "Pan Fried Veg Momo"),
+                AddItemtextWidget(title: "Pan Fried Veg Momo",PositionNo: positionNo, selectedPosition: _selectedPosition),
                 Divider(),
 
                 SizedBox(height: 20,),
