@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:it_momo_wala/utils/default_colors.dart';
 import 'package:it_momo_wala/utils/utils.dart';
 import 'package:audioplayers/audioplayers.dart';
@@ -7,7 +8,6 @@ class ItemWidget extends StatefulWidget {
   final String itemName;
   final String itemImage;
   final String itemPrice;
- // Color? itemNameColor;
   final double totalPlates;
   final double sellItem;
   final double residueItem;
@@ -35,18 +35,30 @@ class ItemWidget extends StatefulWidget {
 }
 
 class _ItemWidgetState extends State<ItemWidget> {
+
+  bool isPressed = false;
+  bool isDarkMode = false;
+
   @override
   Widget build(BuildContext context) {
+
+    Offset distance = isPressed ? Offset(0, 3) : Offset(0, 0);
+    double blur=isPressed ? 2.0 : 0.0;
+
+
     return IgnorePointer(
-      ignoring:  widget.residueItem < 1 ,
-      child: InkWell(
+      ignoring:  widget.residueItem <0 ,
+      child: GestureDetector(
+
         onLongPress: (){
           if(widget.residueItem!=widget.totalPlates) {
             widget.onLongPress();
           }
         },
         onTap: () {
-          widget.callback();
+          if(widget.residueItem!=0) {
+            widget.callback();
+          }
           if(((widget.totalPlates/4)+1).toInt()==widget.residueItem){
             print("${widget.itemName} now avalable only ${(widget.totalPlates)/4} Plates ");
 
@@ -56,8 +68,6 @@ class _ItemWidgetState extends State<ItemWidget> {
 
           }
         },
-        highlightColor:DefaultColor.bg_color,
-        borderRadius: BorderRadius.circular(10),
         child: Container(
         margin: EdgeInsets.only(top: 10),
           child: Stack(
@@ -73,226 +83,228 @@ class _ItemWidgetState extends State<ItemWidget> {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child:
-                    Container(
-                     // padding: EdgeInsets.symmetric(vertical: 7,horizontal: 5),
-                      height: 160,
-                      width: MediaQuery.of(context).size.width*0.45,
-
-                      decoration: BoxDecoration(
-                          color: widget.backgroundColor,
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.3),
-                              blurRadius: 1.0,
-                              spreadRadius: 1.0,
-                              offset: Offset(0, 1),
-                            ),
-                          ]
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
 
 
-                        //  Container(
-                         //   margin: EdgeInsets.only(left: 10,top: 10),
-                          //  width: MediaQuery.of(context).size.width*0.2,
-                             // child:
-                          SizedBox(height: 40,),
-                              Center(child: Text(widget.itemName,textAlign: TextAlign.center, style: TextStyle(fontSize: 15,fontWeight: FontWeight.w600,color: DefaultColor.white,fontFamily: "Inter"),)),
-                  //  ),
-                          Spacer(),
 
-                          // Padding(
-                          //   padding: const EdgeInsets.symmetric(horizontal: 7.0),
-                          //   child: Column(
-                          //     children: [
-                          //       Row(
-                          //         children: [
-                          //           Text("Total:          ",style: TextStyle(color: Colors.black,fontSize: 13,fontWeight: FontWeight.w500,fontFamily: "Latos"),),
-                          //           Text(widget.totalPlates.toString(),style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.w600,fontFamily: "Latos"),),
-                          //         ],
-                          //       ),
-                          //       Row(
-                          //         children: [
-                          //           Text("Sell:             ",style: TextStyle(color: Colors.black,fontSize: 13,fontWeight: FontWeight.w500,fontFamily: "Latos"),),
-                          //
-                          //           Text(widget.sellItem.toString(),style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.w600,fontFamily: "Latos"),),
-                          //         ],
-                          //       ),
-                          //       Row(
-                          //         children: [
-                          //           Text("Residue:     ",style: TextStyle(color: Colors.black,fontSize: 13,fontWeight: FontWeight.w500,fontFamily: "Latos"),),
-                          //           Text(widget.residueItem.toString(),style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.w600,fontFamily: "Latos"),),
-                          //           SizedBox(width: 10,),
-                          //           // widget.residueItem> 1? Container(
-                          //           //    height: 7,
-                          //           //    width: 60,
-                          //           //    child: ClipRRect(
-                          //           //      borderRadius: BorderRadius.circular(3),
-                          //           //      child: LinearProgressIndicator(
-                          //           //        value: (widget.totalPlates - widget.sellItem)/widget.totalPlates, // Set the current progress value
-                          //           //        backgroundColor: Colors.grey[300], // Set the background color of the progress bar
-                          //           //        valueColor: AlwaysStoppedAnimation<Color>(widget.residueItem>20? Colors.blue:Colors.red), // Set the color of the progress indicator
-                          //           //      ),
-                          //           //    ),
-                          //           //  ):Container(height: 7,width: 60,decoration: BoxDecoration(borderRadius: BorderRadius.circular(3),color: Colors.grey[300]),),
-                          //         ],
-                          //       ),
-                          //
-                          //
-                          //       // AnimatedContainer(
-                          //       //   duration: Duration(milliseconds: 500),
-                          //       //   height: widget.residueItem > 1 ? 10 : 7,
-                          //       //   width: widget.residueItem > 1 ? MediaQuery.of(context).size.width : 60,
-                          //       //   decoration: BoxDecoration(
-                          //       //     borderRadius: BorderRadius.circular(widget.residueItem > 1 ? 10 : 3),
-                          //       //     color: Colors.grey[300],
-                          //       //     boxShadow: widget.residueItem > 1
-                          //       //         ? [
-                          //       //       BoxShadow(
-                          //       //         color: Colors.grey.withOpacity(0.3),
-                          //       //         blurRadius: 5.0,
-                          //       //         spreadRadius: 2.0,
-                          //       //         offset: Offset(2, 3),
-                          //       //       ),
-                          //       //     ]
-                          //       //         : null,
-                          //       //   ),
-                          //       //   child: widget.residueItem > 1
-                          //       //       ? ClipRRect(
-                          //       //     borderRadius: BorderRadius.circular(10),
-                          //       //     child: LinearProgressIndicator(
-                          //       //       value: (widget.totalPlates - widget.sellItem) / widget.totalPlates,
-                          //       //       backgroundColor: Colors.grey[300],
-                          //       //       valueColor: AlwaysStoppedAnimation<Color>(
-                          //       //           widget.residueItem > (widget.totalPlates/4) ? Colors.blue : Colors.red),
-                          //       //     ),
-                          //       //   )
-                          //       //       : Container(), // Empty container when residueItem <= 1
-                          //       // )
-                          //
-                          //     ],
-                          //   ),
-                          // ),
-
-                          Center(
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(40),
-                              child: AnimatedContainer(
-                                duration: Duration(milliseconds: 500),
-                                height: 4,
-                                width: MediaQuery.of(context).size.width*0.4,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(50),
-                                    color: Colors.transparent,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: ((widget.totalPlates / 4 )+1).toInt() <= widget.residueItem ? Colors.blue.withOpacity(0.3):Colors.red.withOpacity(0.3),
-                                        blurRadius: 1.0,
-                                        spreadRadius: 1.0,
-                                        offset: const Offset(0, -4),
-                                      ),
-                                    ]
-                                ),
-                                child: Stack(
-                                  children: [
-                                    LinearProgressIndicator(
-                                      value: (widget.totalPlates - widget.sellItem) / widget.totalPlates,
-                                      backgroundColor: Colors.white,
-                                      valueColor: AlwaysStoppedAnimation<Color>(
-                                        widget.residueItem > (widget.totalPlates / 4)
-                                            ? Colors.blue // When residueItem is greater than (totalPlates/4), show blue color.
-                                            : Colors.deepOrange, // Otherwise, show red color.
-                                      ),
-                                    ),
-                                  ],
-                                ), // Empty container when residueItem <= 1
+                    Listener(
+                      onPointerUp:  (_) => setState(() => isPressed=false),
+                      onPointerDown: (_) => setState(()=>isPressed= true),
+                      child: AnimatedContainer(
+                        duration: const Duration(microseconds: 300),
+                        decoration:BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: widget.backgroundColor,
+                            boxShadow: widget.residueItem!=0 ?[
+                              BoxShadow(
+                                  blurRadius: blur,
+                                  offset: -distance,
+                                  color: isDarkMode ? Colors.transparent : Colors.white38,
                               ),
-                            ),
-                          ),
+                              BoxShadow(
+                                blurRadius: blur,
+                                offset: distance,
+                                color: isDarkMode ? Colors.transparent : Colors.white38,
+                              )
+                            ]:[]
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
 
-                          Spacer(),
+                            SizedBox(height: 40,),
+                                Center(child: Text(widget.itemName,textAlign: TextAlign.center, style: TextStyle(fontSize: 15,fontWeight: FontWeight.w600,color: DefaultColor.white,fontFamily: "Inter"),)),
+                            Spacer(),
 
+                            // Padding(
+                            //   padding: const EdgeInsets.symmetric(horizontal: 7.0),
+                            //   child: Column(
+                            //     children: [
+                            //       Row(
+                            //         children: [
+                            //           Text("Total:          ",style: TextStyle(color: Colors.black,fontSize: 13,fontWeight: FontWeight.w500,fontFamily: "Latos"),),
+                            //           Text(widget.totalPlates.toString(),style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.w600,fontFamily: "Latos"),),
+                            //         ],
+                            //       ),
+                            //       Row(
+                            //         children: [
+                            //           Text("Sell:             ",style: TextStyle(color: Colors.black,fontSize: 13,fontWeight: FontWeight.w500,fontFamily: "Latos"),),
+                            //
+                            //           Text(widget.sellItem.toString(),style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.w600,fontFamily: "Latos"),),
+                            //         ],
+                            //       ),
+                            //       Row(
+                            //         children: [
+                            //           Text("Residue:     ",style: TextStyle(color: Colors.black,fontSize: 13,fontWeight: FontWeight.w500,fontFamily: "Latos"),),
+                            //           Text(widget.residueItem.toString(),style: TextStyle(color: Colors.white,fontSize: 13,fontWeight: FontWeight.w600,fontFamily: "Latos"),),
+                            //           SizedBox(width: 10,),
+                            //           // widget.residueItem> 1? Container(
+                            //           //    height: 7,
+                            //           //    width: 60,
+                            //           //    child: ClipRRect(
+                            //           //      borderRadius: BorderRadius.circular(3),
+                            //           //      child: LinearProgressIndicator(
+                            //           //        value: (widget.totalPlates - widget.sellItem)/widget.totalPlates, // Set the current progress value
+                            //           //        backgroundColor: Colors.grey[300], // Set the background color of the progress bar
+                            //           //        valueColor: AlwaysStoppedAnimation<Color>(widget.residueItem>20? Colors.blue:Colors.red), // Set the color of the progress indicator
+                            //           //      ),
+                            //           //    ),
+                            //           //  ):Container(height: 7,width: 60,decoration: BoxDecoration(borderRadius: BorderRadius.circular(3),color: Colors.grey[300]),),
+                            //         ],
+                            //       ),
+                            //
+                            //
+                            //       // AnimatedContainer(
+                            //       //   duration: Duration(milliseconds: 500),
+                            //       //   height: widget.residueItem > 1 ? 10 : 7,
+                            //       //   width: widget.residueItem > 1 ? MediaQuery.of(context).size.width : 60,
+                            //       //   decoration: BoxDecoration(
+                            //       //     borderRadius: BorderRadius.circular(widget.residueItem > 1 ? 10 : 3),
+                            //       //     color: Colors.grey[300],
+                            //       //     boxShadow: widget.residueItem > 1
+                            //       //         ? [
+                            //       //       BoxShadow(
+                            //       //         color: Colors.grey.withOpacity(0.3),
+                            //       //         blurRadius: 5.0,
+                            //       //         spreadRadius: 2.0,
+                            //       //         offset: Offset(2, 3),
+                            //       //       ),
+                            //       //     ]
+                            //       //         : null,
+                            //       //   ),
+                            //       //   child: widget.residueItem > 1
+                            //       //       ? ClipRRect(
+                            //       //     borderRadius: BorderRadius.circular(10),
+                            //       //     child: LinearProgressIndicator(
+                            //       //       value: (widget.totalPlates - widget.sellItem) / widget.totalPlates,
+                            //       //       backgroundColor: Colors.grey[300],
+                            //       //       valueColor: AlwaysStoppedAnimation<Color>(
+                            //       //           widget.residueItem > (widget.totalPlates/4) ? Colors.blue : Colors.red),
+                            //       //     ),
+                            //       //   )
+                            //       //       : Container(), // Empty container when residueItem <= 1
+                            //       // )
+                            //
+                            //     ],
+                            //   ),
+                            // ),
 
-                          Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 8),
-                            child: Container(
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                 Column(
-                                   children: [
-                                     Text("Total",style: TextStyle(color: Colors.white,fontSize: 10,fontWeight: FontWeight.w500,fontFamily: "Latos"),),
-                                     Text(widget.totalPlates.toInt().toString(),style: TextStyle(color: Colors.white,fontSize: 17,fontWeight: FontWeight.w600,fontFamily: "Latos"),),
-                                   ],
-                                 ),
-                               //  Text("|",style: TextStyle(color: Colors.white,fontSize: 17,fontWeight: FontWeight.w600,fontFamily: "Latos"),),
-
-                                 Column(
-                                   children: [
-                                     Text("Sell",style: TextStyle(color: Colors.white,fontSize: 10,fontWeight: FontWeight.w500,fontFamily: "Latos"),),
-                                     Text(widget.sellItem.toInt().toString(),style: TextStyle(color: Colors.white,fontSize: 17,fontWeight: FontWeight.w600,fontFamily: "Latos"),),
-                                   ],
-                                 ),
-
-                                 // Text("|",style: TextStyle(color: Colors.white,fontSize: 17,fontWeight: FontWeight.w600,fontFamily: "Latos"),),
-
-                                  Column(
-                                    children: [
-                                      Text("Residue",style: TextStyle(color: Colors.white,fontSize: 10,fontWeight: FontWeight.w500,fontFamily: "Latos"),),
-                                      Text(widget.residueItem.toInt().toString(),style: TextStyle(color: Colors.white,fontSize: 17,fontWeight: FontWeight.w600,fontFamily: "Latos"),),
-                                    ],
+                            Center(
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(40),
+                                child: AnimatedContainer(
+                                  duration: Duration(milliseconds: 500),
+                                  height: 4,
+                                  width: MediaQuery.of(context).size.width*0.4,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(50),
+                                      color: Colors.transparent,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: ((widget.totalPlates / 4 )+1).toInt() <= widget.residueItem ? Colors.blue.withOpacity(0.3):Colors.red.withOpacity(0.3),
+                                          blurRadius: 1.0,
+                                          spreadRadius: 1.0,
+                                          offset: const Offset(0, -4),
+                                        ),
+                                      ]
                                   ),
-
-                                ],
+                                  child: Stack(
+                                    children: [
+                                      LinearProgressIndicator(
+                                        value: (widget.totalPlates - widget.sellItem) / widget.totalPlates,
+                                        backgroundColor: Colors.white,
+                                        valueColor: AlwaysStoppedAnimation<Color>(
+                                          widget.residueItem > (widget.totalPlates / 4)
+                                              ? Colors.blue // When residueItem is greater than (totalPlates/4), show blue color.
+                                              : Colors.deepOrange, // Otherwise, show red color.
+                                        ),
+                                      ),
+                                    ],
+                                  ), // Empty container when residueItem <= 1
+                                ),
                               ),
                             ),
-                          ),
+
+                            Spacer(),
 
 
-                          Spacer(),
+                            Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 8),
+                              child: Container(
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: [
+                                   Column(
+                                     children: [
+                                       Text("Total",style: TextStyle(color: Colors.white,fontSize: 10,fontWeight: FontWeight.w500,fontFamily: "Latos"),),
+                                       Text(widget.totalPlates.toInt().toString(),style: TextStyle(color: Colors.white,fontSize: 17,fontWeight: FontWeight.w600,fontFamily: "Latos"),),
+                                     ],
+                                   ),
+                                 //  Text("|",style: TextStyle(color: Colors.white,fontSize: 17,fontWeight: FontWeight.w600,fontFamily: "Latos"),),
 
-                          // Center(
-                          //   child: ClipRRect(
-                          //     borderRadius: BorderRadius.circular(40),
-                          //     child: AnimatedContainer(
-                          //       duration: Duration(milliseconds: 500),
-                          //       height: 4,
-                          //       width: MediaQuery.of(context).size.width*0.4,
-                          //       decoration: BoxDecoration(
-                          //         borderRadius: BorderRadius.circular(50),
-                          //         color: Colors.transparent,
-                          //         boxShadow: [
-                          //           BoxShadow(
-                          //             color: ((widget.totalPlates / 4 )+1).toInt() <= widget.residueItem ? Colors.blue.withOpacity(0.3):Colors.red.withOpacity(0.3),
-                          //             blurRadius: 1.0,
-                          //             spreadRadius: 1.0,
-                          //             offset: const Offset(0, -4),
-                          //           ),
-                          //        ]
-                          //       ),
-                          //       child: Stack(
-                          //         children: [
-                          //           LinearProgressIndicator(
-                          //             value: (widget.totalPlates - widget.sellItem) / widget.totalPlates,
-                          //             backgroundColor: Colors.transparent,
-                          //             valueColor: AlwaysStoppedAnimation<Color>(
-                          //               widget.residueItem > (widget.totalPlates / 4)
-                          //                   ? Colors.blue // When residueItem is greater than (totalPlates/4), show blue color.
-                          //                   : Colors.red, // Otherwise, show red color.
-                          //             ),
-                          //           ),
-                          //         ],
-                          //       ), // Empty container when residueItem <= 1
-                          //     ),
-                          //   ),
-                          // ),
+                                   Column(
+                                     children: [
+                                       Text("Sell",style: TextStyle(color: Colors.white,fontSize: 10,fontWeight: FontWeight.w500,fontFamily: "Latos"),),
+                                       Text(widget.sellItem.toInt().toString(),style: TextStyle(color: Colors.white,fontSize: 17,fontWeight: FontWeight.w600,fontFamily: "Latos"),),
+                                     ],
+                                   ),
 
-                        ],
+                                   // Text("|",style: TextStyle(color: Colors.white,fontSize: 17,fontWeight: FontWeight.w600,fontFamily: "Latos"),),
+
+                                    Column(
+                                      children: [
+                                        Text("Residue",style: TextStyle(color: Colors.white,fontSize: 10,fontWeight: FontWeight.w500,fontFamily: "Latos"),),
+                                        Text(widget.residueItem.toInt().toString(),style: TextStyle(color: Colors.white,fontSize: 17,fontWeight: FontWeight.w600,fontFamily: "Latos"),),
+                                      ],
+                                    ),
+
+                                  ],
+                                ),
+                              ),
+                            ),
+
+
+                            Spacer(),
+
+                            // Center(
+                            //   child: ClipRRect(
+                            //     borderRadius: BorderRadius.circular(40),
+                            //     child: AnimatedContainer(
+                            //       duration: Duration(milliseconds: 500),
+                            //       height: 4,
+                            //       width: MediaQuery.of(context).size.width*0.4,
+                            //       decoration: BoxDecoration(
+                            //         borderRadius: BorderRadius.circular(50),
+                            //         color: Colors.transparent,
+                            //         boxShadow: [
+                            //           BoxShadow(
+                            //             color: ((widget.totalPlates / 4 )+1).toInt() <= widget.residueItem ? Colors.blue.withOpacity(0.3):Colors.red.withOpacity(0.3),
+                            //             blurRadius: 1.0,
+                            //             spreadRadius: 1.0,
+                            //             offset: const Offset(0, -4),
+                            //           ),
+                            //        ]
+                            //       ),
+                            //       child: Stack(
+                            //         children: [
+                            //           LinearProgressIndicator(
+                            //             value: (widget.totalPlates - widget.sellItem) / widget.totalPlates,
+                            //             backgroundColor: Colors.transparent,
+                            //             valueColor: AlwaysStoppedAnimation<Color>(
+                            //               widget.residueItem > (widget.totalPlates / 4)
+                            //                   ? Colors.blue // When residueItem is greater than (totalPlates/4), show blue color.
+                            //                   : Colors.red, // Otherwise, show red color.
+                            //             ),
+                            //           ),
+                            //         ],
+                            //       ), // Empty container when residueItem <= 1
+                            //     ),
+                            //   ),
+                            // ),
+
+                          ],
+                        ),
                       ),
                     ),
                   ) ),

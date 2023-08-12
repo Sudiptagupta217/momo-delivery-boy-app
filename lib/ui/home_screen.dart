@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:it_momo_wala/utils/default_colors.dart';
 import '../widgets/buttom_manu.dart';
+import '../widgets/drawer_menu.dart';
 import '../widgets/item_widget.dart';
 import 'package:audioplayers/audioplayers.dart';
 
@@ -14,6 +15,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+  final GlobalKey<ScaffoldState> _key = GlobalKey();
 
 
   String? _selectedVan = 'V01';
@@ -156,6 +159,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
 
     return Scaffold(
+      key: _key,
+      drawer: DrawerMenu(),
+
      backgroundColor: DefaultColor.bg_color,
 
       bottomNavigationBar: BottomMenu(
@@ -184,10 +190,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
 
 
-                  Container(
-                    width: 75,
-                      padding: EdgeInsets.only(left: 10),
-                      child: Align(alignment: Alignment.centerLeft, child: Icon(Icons.menu,color: Colors.white,))),
+                  GestureDetector(
+                    onTap: () => _key.currentState!.openDrawer(),
+                    child: Container(
+                      width: 75,
+                        padding: EdgeInsets.only(left: 10),
+                        child: Align(alignment: Alignment.centerLeft, child: Icon(Icons.menu,color: Colors.white,))),
+                  ),
 
                   Spacer(),
 

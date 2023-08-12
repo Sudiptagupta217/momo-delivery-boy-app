@@ -7,12 +7,14 @@ import 'custom_dropdown_filed.dart';
 
 class AddItemtextWidget extends StatefulWidget {
   final String title;
+   String? available;
   final List<String> PositionNo;
   String selectedPosition;
 
   AddItemtextWidget({
     Key? key,
     required this.title,
+     this.available,
     required this.PositionNo,
     required this.selectedPosition,
   }) : super(key: key);
@@ -113,7 +115,7 @@ class _AddItemtextWidgetState extends State<AddItemtextWidget> {
                       fontWeight: FontWeight.w400)),
 
                     Text(
-                      "12",
+                      widget.available!,
                       style: TextStyle(
                       color: Colors.white,
                       fontSize: 20,
@@ -164,20 +166,18 @@ class _AddItemtextWidgetState extends State<AddItemtextWidget> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Center(child: Text("Item Quantity Details")),
+          title: const Center(child: Text("Item Quantity Details")),
           content: Container(
-            color: Colors.green.shade100,
             height: 90,
             child: Column(
               children: [
                 Container(
                   height: 35,
-                  padding: EdgeInsets.symmetric(horizontal: 2),
-                  color: Colors.grey.shade100,
+                  padding: const EdgeInsets.symmetric(horizontal: 2),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
+                    children:  [
                   Expanded(
                     flex: 2,
                     child: Text("Available Items:",
@@ -189,7 +189,7 @@ class _AddItemtextWidgetState extends State<AddItemtextWidget> {
                   ),
             Expanded(
               flex: 1,
-              child: Text("10",
+              child: Text(widget.available!,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: Colors.black87,
@@ -200,18 +200,17 @@ class _AddItemtextWidgetState extends State<AddItemtextWidget> {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
 
                 Container(
                   height: 35,
                   padding: EdgeInsets.symmetric(vertical: 4,horizontal: 2),
-                  color: Colors.grey.shade100,
                   child: Flex(
                     direction: Axis.horizontal,
                     children: [
-                      Expanded(
+                      const Expanded(
                         flex: 2,
                         child: Align(
                           alignment: Alignment.bottomLeft,
@@ -228,12 +227,12 @@ class _AddItemtextWidgetState extends State<AddItemtextWidget> {
                         child: TextFormField(
                           keyboardType: TextInputType.number,
                           inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly],
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 19,
                               fontFamily: "Raleway",
                               fontWeight: FontWeight.w500),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             hintStyle: TextStyle(
                                 color: Colors.black87,
                                 fontSize: 16,

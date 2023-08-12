@@ -19,8 +19,10 @@ class MyApp extends StatelessWidget {
      //SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]); // hide status bar
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+
       title: 'Flutter Demo',
       theme: ThemeData(
+
       ),
       home:  SplashScreen(),
     );
