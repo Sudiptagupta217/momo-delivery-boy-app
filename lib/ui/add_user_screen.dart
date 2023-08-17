@@ -32,6 +32,8 @@ class _AddUserScreenState extends State<AddUserScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
 
+
+
       drawer: DrawerMenu(),
 
       bottomNavigationBar:  BottomMenu(
@@ -42,6 +44,7 @@ class _AddUserScreenState extends State<AddUserScreen> {
 
         child: SafeArea(
           child: Container(
+            height: MediaQuery.of(context).size.height,
             decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,

@@ -94,7 +94,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       decoration: BoxDecoration(
                           border: Border.all(width: 1,color: Colors.white),
                           borderRadius: BorderRadius.circular(50),
-                          color: Color(0xFF341A9D)
+                          color: DefaultColor.bg_color
                       ),
                       child: Icon(Icons.camera_alt_outlined,
                           color: Colors.white, size: 15),

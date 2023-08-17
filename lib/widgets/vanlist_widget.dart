@@ -26,7 +26,7 @@ class _VanListState extends State<VanList> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 60,
+     // height: 60,
       padding: EdgeInsets.only(left: 10,right: 20, top: 5, bottom:5),
       margin: EdgeInsets.only(bottom: 1),
       color: Color(0x93262626),
