@@ -50,6 +50,7 @@ dev_dependencies:
   audioplayers: ^3.0.0
   flutter_switch: ^0.3.2
   image_picker: ^0.8.7+5
+  count_stepper: ^0.0.4
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
