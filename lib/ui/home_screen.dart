@@ -188,8 +188,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
 
-
-
                   GestureDetector(
                     onTap: () => _key.currentState!.openDrawer(),
                     child: Container(

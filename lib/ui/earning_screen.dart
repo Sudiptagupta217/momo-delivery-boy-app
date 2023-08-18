@@ -28,8 +28,8 @@ class _EarningScreenState extends State<EarningScreen> {
       ),
       body: SafeArea(
         child: Column(
-          children: const [
-            Text("Earning page",style: TextStyle(fontSize: 120),),
+          children: [
+            
           ],
         ),
       ),

@@ -41,84 +41,85 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
       body: SafeArea(
         child:
-        Container(
-          height: MediaQuery.of(context).size.height,
+        SingleChildScrollView(
+          child: Container(
+            height: MediaQuery.of(context).size.height,
       decoration: BoxDecoration(
       gradient: LinearGradient(
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-        colors: [
-          DefaultColor.bg_color,
-          Colors.blueGrey.shade900,
-        ],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            DefaultColor.bg_color,
+            Colors.blueGrey.shade900,
+          ],
       )
       ),
       padding: EdgeInsets.symmetric(horizontal: 25),
       child: Column(
       children: [
 
-        SizedBox(height: 30,),
+          SizedBox(height: 30,),
 
-        Center(
-          child: Container(
-            width: 100,
-            height: 100,
-            child: Stack(
-              children: [
-                Positioned(
-                    right: 10,
-                    left: 10,
+          Center(
+            child: Container(
+              width: 100,
+              height: 100,
+              child: Stack(
+                children: [
+                  Positioned(
+                      right: 10,
+                      left: 10,
+                      top: 10,
+                      bottom: 10,
+                      child: Container(
+                          height: 100,
+                          width: 100,
+                          child: CircleAvatar(
+                            radius: 80,
+                            backgroundImage: _imageFile == null
+                                ? null
+                                : FileImage(File(_imageFile!.path)),
+                          ))),
+                  Positioned(
                     top: 10,
-                    bottom: 10,
-                    child: Container(
-                        height: 100,
-                        width: 100,
-                        child: CircleAvatar(
-                          radius: 80,
-                          backgroundImage: _imageFile == null
-                              ? null
-                              : FileImage(File(_imageFile!.path)),
-                        ))),
-                Positioned(
-                  top: 10,
-                  right: 10,
-                  child: InkWell(
-                    onTap: () {
-                      showModalBottomSheet(
-                          context: context,
-                          builder: (context) => bottomsheet());
-                    },
-                    child: Container(
-                      height: 25,
-                      width: 25,
-                      decoration: BoxDecoration(
-                          border: Border.all(width: 1,color: Colors.white),
-                          borderRadius: BorderRadius.circular(50),
-                          color: DefaultColor.bg_color
+                    right: 10,
+                    child: InkWell(
+                      onTap: () {
+                        showModalBottomSheet(
+                            context: context,
+                            builder: (context) => bottomsheet());
+                      },
+                      child: Container(
+                        height: 25,
+                        width: 25,
+                        decoration: BoxDecoration(
+                            border: Border.all(width: 1,color: Colors.white),
+                            borderRadius: BorderRadius.circular(50),
+                            color: DefaultColor.bg_color
+                        ),
+                        child: Icon(Icons.camera_alt_outlined,
+                            color: Colors.white, size: 15),
                       ),
-                      child: Icon(Icons.camera_alt_outlined,
-                          color: Colors.white, size: 15),
                     ),
-                  ),
-                )
-              ],
+                  )
+                ],
+              ),
             ),
           ),
-        ),
 
-        CustomTextFiled(text: "Name",icon: Icon(Icons.account_circle_outlined)),
-        CustomTextFiled(text: "Phone",icon: Icon(Icons.phone_android)),
-        CustomTextFiled(text: "Email",icon: Icon(Icons.alternate_email)),
-        CustomTextFiled(text: "Password",icon: Icon(Icons.lock_outline_rounded)),
-        //CustomTextFiled(text: "Van Id",icon: Icon(Icons.car_crash)),
+          CustomTextFiled(text: "Name",icon: Icon(Icons.account_circle_outlined)),
+          CustomTextFiled(text: "Phone",icon: Icon(Icons.phone_android)),
+          CustomTextFiled(text: "Email",icon: Icon(Icons.alternate_email)),
+          CustomTextFiled(text: "Password",icon: Icon(Icons.lock_outline_rounded)),
+          //CustomTextFiled(text: "Van Id",icon: Icon(Icons.car_crash)),
        // CustomTextFiled(text: "User Type",icon: Icon(Icons.type_specimen)),
 
-        // SizedBox(height: 20,),
-        Spacer(),
+          // SizedBox(height: 20,),
+          Spacer(),
 
-        RoundButton(title: "Update",style: TextStyle(color: Colors.white,fontSize: 17,fontWeight: FontWeight.w500), color: DefaultColor.delault_color,onTap: (){}),
+          RoundButton(title: "Update",style: TextStyle(color: Colors.white,fontSize: 17,fontWeight: FontWeight.w500), color: DefaultColor.delault_color,onTap: (){}),
 
-        Spacer(),
+          Spacer(),
 
 
 
@@ -126,6 +127,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ],
       ),
     ),
+        ),
 
     ),
     );
