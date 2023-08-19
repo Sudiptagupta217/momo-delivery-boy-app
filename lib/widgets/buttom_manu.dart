@@ -5,6 +5,7 @@ import 'package:it_momo_wala/utils/default_colors.dart';
 
 import '../ui/earning_screen.dart';
 import '../ui/sell_screen.dart';
+import '../ui/stocks_screen.dart';
 
 class BottomMenu extends StatelessWidget {
   final selectedIndex;
@@ -47,8 +48,8 @@ class BottomMenu extends StatelessWidget {
             ),
 
             BottomNavigationBarItem(
-              icon: Icon(Icons.wallet_rounded),
-              label: 'Earning',
+              icon: Icon(Icons.shopping_bag_outlined),
+              label: 'Stocks',
               backgroundColor: Color(0xff1a1a1a),
             ),
 
@@ -81,7 +82,7 @@ class BottomMenu extends StatelessWidget {
                 break;
               case 2:
                 onClicked;
-                Navigator.push(context, MaterialPageRoute(builder: (context) => EarningScreen(),));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => StocksScreen(),));
                 break;
                 case 3:
                 onClicked;

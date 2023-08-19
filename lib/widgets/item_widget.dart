@@ -65,7 +65,6 @@ class _ItemWidgetState extends State<ItemWidget> {
             Utils.toastMessage("${widget.itemName} now avalable only ${(widget.totalPlates)~/4} Plates \n");
             AudioPlayer().play(AssetSource('audio/Stock_Notification.wav'));
 
-
           }
         },
         child: Container(
