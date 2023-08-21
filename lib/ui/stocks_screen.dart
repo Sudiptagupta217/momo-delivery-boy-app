@@ -146,6 +146,35 @@ class _StocksScreenState extends State<StocksScreen> {
                    child: CustomTextFormFiled(hintText: "Search Item", keytype: TextInputType.text,icons: Icons.search,height: 50)),
 
                 SizedBox(height: 10,),
+                
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Row(
+                    children: [
+
+                      Container(
+                          padding: EdgeInsets.symmetric(horizontal: 10,vertical: 7),
+                          decoration: BoxDecoration(
+                            border: Border.all(width: 1,color: Colors.white70),
+                            borderRadius: BorderRadius.circular(20)
+                          ),
+                          child: Text("All Items",style: TextStyle(color: Colors.white70,fontSize: 16,fontWeight: FontWeight.w600),)),
+
+                      SizedBox(width: 5,),
+
+                      Container(
+                          padding: EdgeInsets.symmetric(horizontal: 10,vertical: 7),
+                          decoration: BoxDecoration(
+                              border: Border.all(width: 1,color: Colors.white70),
+                              borderRadius: BorderRadius.circular(20)
+                          ),
+                          child: Text("Low Stock",style: TextStyle(color: Colors.white70,fontSize: 16,fontWeight: FontWeight.w600),)),
+                    ],
+                  ),
+                ),
+
+                SizedBox(height: 10,),
+
 
                 Container(
                   width: size.width,
@@ -189,11 +218,7 @@ class _StocksScreenState extends State<StocksScreen> {
                       },
                    );
              }).toList(),
-
                 )
-
-
-
               ],
             ),
           ),

@@ -119,7 +119,9 @@ class _AddStockItemScreenState extends State<AddStockItemScreen> {
                           Container(
                               width: MediaQuery.of(context).size.width*0.45,
                               child: CustomTextFormFiled(text: "Opening Stock",hintText: "Enter Count",height: 70,keytype: TextInputType.number,
-                                suficons: Icons.keyboard_arrow_down,)),
+                                suficons: Icons.keyboard_arrow_down,
+                              onTap: (){},
+                              )),
                           Container(
                               width: MediaQuery.of(context).size.width*0.45,
                               child: CustomTextFormFiled(text: "Low Stock Alert",hintText: "Enter Count",height: 70,keytype: TextInputType.number,suficons: Icons.notifications_none,)),
