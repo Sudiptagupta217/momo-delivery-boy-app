@@ -16,6 +16,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
+  DateTime? _selectedDate;
+
   final GlobalKey<ScaffoldState> _key = GlobalKey();
 
 
@@ -37,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
     {
       'bgColor': 0xfff00000,
       'itemName': 'Steam Chicken Momo',
-      'itemPrice': '50',
+      'itemPrice': 50.0.toDouble(),
     //  'imagePath': "assets/images/chicken_momo.jpg",
       'totalPlates': 15.0.toDouble(),
       'sellItem': 0.0.toDouble(),
@@ -46,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
     {
       'bgColor': 0xff00c71b,
       'itemName': 'Steam Veg Momo',
-      'itemPrice': '30',
+      'itemPrice': 30.0.toDouble(),
       // 'imagePath': "assets/images/veg_momo.jpg",
       'totalPlates': 10.0.toDouble(),
       'sellItem': 0.0.toDouble(),
@@ -57,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
     {
       'bgColor': 0xfff00000,
       'itemName': ' Fried Chicken Momo',
-      'itemPrice': '70',
+      'itemPrice': 70.0.toDouble(),
       //  'imagePath': "assets/images/chicken_momo.jpg",
       'totalPlates': 60.0.toDouble(),
       'sellItem': 0.0.toDouble(),
@@ -66,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
     {
       'bgColor': 0xff00c71b,
       'itemName': 'Fried Veg Momo',
-      'itemPrice': '50',
+      'itemPrice': 50.0.toDouble(),
       // 'imagePath': "assets/images/veg_momo.jpg",
       'totalPlates': 10.0.toDouble(),
       'sellItem': 0.0.toDouble(),
@@ -76,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
     {
       'bgColor': 0xfff00000,
       'itemName': 'Rost Chicken Momo',
-      'itemPrice': '100',
+      'itemPrice': 100.0.toDouble(),
       // 'imagePath': "assets/images/chicken_momo.jpg",
       'totalPlates': 60.0.toDouble(),
       'sellItem': 0.0.toDouble(),
@@ -86,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
     {
       'bgColor': 0xff00c71b,
       'itemName': 'Rost Veg Momo',
-      'itemPrice': '80',
+      'itemPrice': 80.0.toDouble(),
       //'imagePath': "assets/images/veg_momo.jpg",
       'totalPlates': 10.0.toDouble(),
       'sellItem': 0.0.toDouble(),
@@ -96,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
     {
       'bgColor': 0xfff00000,
       'itemName': 'Pan Fried Chicken Momo',
-      'itemPrice': '100',
+      'itemPrice': 100.0.toDouble(),
      // 'imagePath': "assets/images/chicken_momo.jpg",
       'totalPlates': 60.0.toDouble(),
       'sellItem': 0.0.toDouble(),
@@ -106,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
     {
       'bgColor': 0xff00c71b,
       'itemName': 'Pan Fried Veg Momo',
-      'itemPrice': '80',
+      'itemPrice': 80.0.toDouble(),
      // 'imagePath': "assets/images/veg_momo.jpg",
       'totalPlates': 10.0.toDouble(),
       'sellItem': 0.0.toDouble(),
@@ -117,7 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
     {
       'bgColor': 0xfff00000,
       'itemName': '1/2 Chicken Momo',
-      'itemPrice': '30',
+      'itemPrice': 30.0.toDouble(),
     //  'imagePath': "assets/images/chicken_momo.jpg",
       'totalPlates': 15.0.toDouble(),
       'sellItem': 0.0.toDouble(),
@@ -126,7 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
     {
       'bgColor': 0xff00c71b,
       'itemName': '1/2 Veg Momo',
-      'itemPrice': '20',
+      'itemPrice': 20.0.toDouble(),
      // 'imagePath': "assets/images/veg_momo.jpg",
       'totalPlates': 10.0.toDouble(),
       'sellItem': 0.0.toDouble(),
@@ -252,12 +254,35 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
 
+            Padding(
+              padding: const EdgeInsets.only(top: 10.0,right: 10),
+              child: Row(
+                children: [
+                  Spacer(),
+                  Text(
+                    _selectedDate != null
+                        ? "${_selectedDate!.day}-${_selectedDate!.month}-${_selectedDate!.year}"
+                        :'',
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 13,
+                      fontWeight:FontWeight.w600,
+                    ),
+                  ),
+
+                  InkWell(
+                    onTap: ()=>_selectDate(context),
+                      child: Icon(Icons.calendar_month,color: Colors.white,size: 16,))
+                ],
+              ),
+            ),
+
 
             //body
             Expanded(
               child:
               Container(
-                padding: EdgeInsets.only(left: 5,right: 5,top: 10),
+                padding: EdgeInsets.only(left: 5,right: 5,top: 2),
                 decoration: const BoxDecoration(
                     color: Color(0xff2a2929),
                     borderRadius: BorderRadius.only(topRight: Radius.circular(25),topLeft: Radius.circular(25)),
@@ -265,7 +290,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: GridView.count(
                   crossAxisCount: 2,
                   physics: BouncingScrollPhysics(),
-                  childAspectRatio: 0.87,
+                  childAspectRatio: 0.79,
                   shrinkWrap: true,
                   controller: new ScrollController(keepScrollOffset: false),
 
@@ -346,6 +371,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       sellItem: itemData['sellItem'],
                       residueItem: itemData['residueItem'],
                      // itemNameColor: itemData['itemNameColor'],
+                      totalPrice:itemData['itemPrice'] * itemData['totalPlates'],
+                      sellPrice: itemData['itemPrice'] * itemData['sellItem'],
+                      residuePrice: itemData['itemPrice'] * itemData['residueItem'],
+
                       callback: () {
                         setState(() {
                           itemData['sellItem']++;
@@ -370,4 +399,21 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
+
+  Future<void> _selectDate(BuildContext context) async {
+    DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: _selectedDate ?? DateTime.now(),
+      firstDate: DateTime(1900),
+      lastDate: DateTime(2101),
+    );
+
+    if (picked != null && picked != _selectedDate) {
+      setState(() {
+        _selectedDate = picked;
+      });
+    }
+  }
+
 }

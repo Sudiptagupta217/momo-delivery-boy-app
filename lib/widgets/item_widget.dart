@@ -7,10 +7,13 @@ import 'package:audioplayers/audioplayers.dart';
 class ItemWidget extends StatefulWidget {
   final String itemName;
   final String itemImage;
-  final String itemPrice;
+  final double itemPrice;
   final double totalPlates;
+  final double totalPrice;
   final double sellItem;
+  final double sellPrice;
   final double residueItem;
+  final double residuePrice;
   Color? backgroundColor;
   Color? priceBgColor;
   VoidCallback callback;
@@ -21,8 +24,11 @@ class ItemWidget extends StatefulWidget {
     required this.itemPrice,
     required this.itemImage,
     required this.totalPlates,
+    required this.totalPrice,
     required this.sellItem,
+    required this.sellPrice,
     required this.residueItem,
+    required this.residuePrice,
     this.backgroundColor = DefaultColor.white,
     this.priceBgColor,
     required this.callback,
@@ -74,11 +80,12 @@ class _ItemWidgetState extends State<ItemWidget> {
               Container(
                 margin: EdgeInsets.only(top: 5),
               ),
+
               Positioned(
                 top: 50,
                   right: 0,
                   left: 0,
-                  bottom: 5,
+                  bottom: 23,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child:
@@ -231,31 +238,40 @@ class _ItemWidgetState extends State<ItemWidget> {
                                 padding: EdgeInsets.symmetric(horizontal: 8),
                               child: Container(
                                 child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  //crossAxisAlignment: CrossAxisAlignment.center,
+                                 // mainAxisAlignment: MainAxisAlignment.spaceAround,
                                   children: [
-                                   Column(
-                                     children: [
-                                       Text("Total",style: TextStyle(color: Colors.white,fontSize: 10,fontWeight: FontWeight.w500,fontFamily: "Latos"),),
-                                       Text(widget.totalPlates.toInt().toString(),style: TextStyle(color: Colors.white,fontSize: 17,fontWeight: FontWeight.w600,fontFamily: "Latos"),),
-                                     ],
+                                   Expanded(
+                                     flex: 1,
+                                     child: Column(
+                                       children: [
+                                         Text("Total",style: TextStyle(color: Colors.white,fontSize: 10,fontWeight: FontWeight.w500,fontFamily: "Latos"),),
+                                         Text(widget.totalPlates.toInt().toString(),style: TextStyle(color: Colors.white,fontSize: 17,fontWeight: FontWeight.w600,fontFamily: "Latos"),),
+                                       ],
+                                     ),
                                    ),
                                  //  Text("|",style: TextStyle(color: Colors.white,fontSize: 17,fontWeight: FontWeight.w600,fontFamily: "Latos"),),
 
-                                   Column(
-                                     children: [
-                                       Text("Sell",style: TextStyle(color: Colors.white,fontSize: 10,fontWeight: FontWeight.w500,fontFamily: "Latos"),),
-                                       Text(widget.sellItem.toInt().toString(),style: TextStyle(color: Colors.white,fontSize: 17,fontWeight: FontWeight.w600,fontFamily: "Latos"),),
-                                     ],
+                                   Expanded(
+                                     flex: 1,
+                                     child: Column(
+                                       children: [
+                                         Text("Sell",style: TextStyle(color: Colors.white,fontSize: 10,fontWeight: FontWeight.w500,fontFamily: "Latos"),),
+                                         Text(widget.sellItem.toInt().toString(),style: TextStyle(color: Colors.white,fontSize: 17,fontWeight: FontWeight.w600,fontFamily: "Latos"),),
+                                       ],
+                                     ),
                                    ),
 
                                    // Text("|",style: TextStyle(color: Colors.white,fontSize: 17,fontWeight: FontWeight.w600,fontFamily: "Latos"),),
 
-                                    Column(
-                                      children: [
-                                        Text("Residue",style: TextStyle(color: Colors.white,fontSize: 10,fontWeight: FontWeight.w500,fontFamily: "Latos"),),
-                                        Text(widget.residueItem.toInt().toString(),style: TextStyle(color: Colors.white,fontSize: 17,fontWeight: FontWeight.w600,fontFamily: "Latos"),),
-                                      ],
+                                    Expanded(
+                                      flex: 1,
+                                      child: Column(
+                                        children: [
+                                          Text("Residue",style: TextStyle(color: Colors.white,fontSize: 10,fontWeight: FontWeight.w500,fontFamily: "Latos"),),
+                                          Text(widget.residueItem.toInt().toString(),style: TextStyle(color: Colors.white,fontSize: 17,fontWeight: FontWeight.w600,fontFamily: "Latos"),),
+                                        ],
+                                      ),
                                     ),
 
                                   ],
@@ -307,6 +323,7 @@ class _ItemWidgetState extends State<ItemWidget> {
                       ),
                     ),
                   ) ),
+
 
               Positioned(
                // top: 15,
@@ -392,7 +409,7 @@ class _ItemWidgetState extends State<ItemWidget> {
                             boxShadow: [BoxShadow(color: Colors.grey)],
                             border: Border.all(width: 2,color: Colors.grey.shade200)
                           ),
-                          child: Center(child: Text(widget.itemPrice, textAlign: TextAlign.center, style: TextStyle(color: Colors.white,fontSize: 13, fontWeight: FontWeight.w600,fontFamily: "Lato"))),
+                          child: Center(child: Text(widget.itemPrice.toInt().toString(), textAlign: TextAlign.center, style: TextStyle(color: Colors.white,fontSize: 13, fontWeight: FontWeight.w600,fontFamily: "Lato"))),
                         )
                     )
 
@@ -400,6 +417,94 @@ class _ItemWidgetState extends State<ItemWidget> {
                 ) ,   
                 
               ),
+
+              Positioned(
+                bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(height: 40,
+
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 8.0,right: 8.0, top: 10.0),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(height: 10,width: 0.5,color: Colors.white,),
+                                Container(height: 10,width: 0.5,color: Colors.white,),
+                                Container(height: 10,width: 0.5,color: Colors.white,),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                                  child: Expanded(
+                                    flex: 1,
+                                    child: Container(height: 16,width: 35,decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: DefaultColor.bg_color,
+                                        boxShadow: [
+                                          BoxShadow(
+                                              color: Colors.grey.shade600,spreadRadius: 1,blurRadius: 0.4,offset: Offset(0, 1)
+                                          )
+                                        ]
+                                    ),
+                                      child: Center(child: Text(widget.totalPrice.toInt().toString(),style: TextStyle(color: Colors.white,fontSize: 10,fontWeight: FontWeight.w600))),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                                  child: Expanded(
+                                    flex: 1,
+                                    child: Container(height: 16,width: 35,decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: DefaultColor.bg_color,
+                                        boxShadow: [
+                                          BoxShadow(
+                                              color: Colors.grey.shade600,spreadRadius: 1,blurRadius: 0.4,offset: Offset(0, 1)
+                                          )
+                                        ]
+                                    ),
+                                      child: Center(child: Text(widget.sellPrice.toInt().toString(),style: TextStyle(color: Colors.white,fontSize: 10,fontWeight: FontWeight.w600))),
+                                    ),
+                                  ),
+                                ),
+
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                                  child: Expanded(
+                                    flex: 1,
+                                    child: Container(height: 16,width: 35,decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: DefaultColor.bg_color,
+                                      boxShadow: [
+                                        BoxShadow(
+                                           color: Colors.grey.shade600,spreadRadius: 1,blurRadius: 0.4,offset: Offset(0, 1)
+                                        )
+                                      ]
+                                    ),
+                                      child: Center(child: Text(widget.residuePrice.toInt().toString(),style: TextStyle(color: Colors.white,fontSize: 10,fontWeight: FontWeight.w600))),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+
+
+                      ),
+                    ),
+                  ))
+
 
             ],
           )
